@@ -32,7 +32,7 @@ def validate(day, month, year):
 
     if(isValid):
         print("Valid input date" )
-    if(year < 2000):
+    elif(year < 2000):
         print("Year should be greater than 2000")
     else:
         print("Invalid input date")
