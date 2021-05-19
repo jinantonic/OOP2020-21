@@ -35,7 +35,7 @@ print('1 2 3'.isdigit())
 print('1 2 3'.isalpha())
 
 # Listing 1(a)
-my_input = input('tell me a letter between a and c >')
+"""my_input = input('tell me a letter between a and c >')
 
 if my_input == 'a':
     print("a was input")
@@ -44,10 +44,10 @@ elif my_input == 'b':
 elif my_input == 'c':
     print("c was input")
 else:
-    print("wrong letter, sorry.")
+    print("wrong letter, sorry.")"""
 
 # Listing 1(b)
-my_input = input('tell me a letter between a and c >')
+"""my_input = input('tell me a letter between a and c >')
 
 if(my_input == 'a'):
     print("a was input")
@@ -56,4 +56,87 @@ if(my_input == 'b'):
 if(my_input == 'c'):
     print("c was input")
 else:
-    print("wrong letter, sorry.")
+    print("wrong letter, sorry.")"""
+
+
+# Inheritance
+class Person:
+    def __init__(self):
+        self.name = 'Jina'
+        self.age = 26
+
+    def get_age(self):
+        print(self.name, "is", self.age, "years old.")
+
+p = Person()
+p.get_age()
+
+class Studnet(Person):
+    pass
+
+s = Studnet()
+s.get_age()
+
+# Composition
+class Salary:
+    def __init__(self, pay, bonus):
+        self.pay = pay
+        self.bonus = bonus
+
+    def annual_salary(self):
+        return (self.pay * 12) + self.bonus
+
+class Employee:
+    def __init__(self, name, age, pay, bonus):
+        self.name = name
+        self.age = age
+        self.salary_object = Salary(pay, bonus)
+
+    def total_salary(self):
+        return self.salary_object.annual_salary()
+
+e = Employee("Jina", 26, 5000, 100000)
+print(e.total_salary())
+
+# Decorator
+def say(func):
+    def say_name():
+        print("Jina")
+
+    def say_nationality():
+        print("Korean")
+    
+    def wrapper():
+        say_name()
+        say_nationality()
+        func()
+    
+    return wrapper
+
+@say
+def start_example():
+    print("In the example")
+
+start_example()
+
+from abc import ABC, abstractmethod
+
+class Coffee(ABC):
+    @abstractmethod
+    def get_cost(self):
+        pass
+
+class Concrete_Coffee(Coffee):
+    def get_cost(self):
+        return 3.5
+
+class coffee_with_milk(Coffee):
+    def get_cost(self):
+        return 4
+
+class coffee_with_almond_milk(Coffee):
+    def get_cost(self):
+        return 4.5
+
+c = Concrete_Coffee()
+c.get_cost()
