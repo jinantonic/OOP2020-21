@@ -26,6 +26,7 @@ str = "12"
 print(str + 10 * ' ')
 print(str.rjust(10))
 print(str.ljust(10))
+print('%10d'%(12))
 
 # True or false
 print('123'.isdigit())

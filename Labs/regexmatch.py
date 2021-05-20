@@ -6,38 +6,49 @@
 
 # A function that accepts a string argument and returns a value indicating
 # if the string matches a particular regular expression.
-def find_function():
-    str = "Jina Park from South Korea"
-    result = str.find('Jina')
-    if(result != -1):
-        print("Word found in the given string")
-
-find_function()
-
 
 # Function body evaluates the argument and determines if it is a date
 # in the format DD[.|-]MM[.|-]YYYY, where the year should accept only values starting at 2000
 import datetime
 
-def validate(day, month, year):
-
-    isValid = True
-
-    try:
-        datetime.datetime(int(year), int(month), int(day))
+def find_function(str):
+    date = []
     
-    except ValueError:
-        isValid = False
-        #ßraise ValueError("Incorrect data format")
+    if(str[0].isalpha()):
+        result = str.find('Jina')
+        if(result != -1):
+            print("Word found in the given string")
+        else:
+            print("Boo")
 
-    if(isValid):
-        print("Valid input date" )
-    elif(year < 2000):
-        print("Year should be greater than 2000")
-    else:
-        print("Invalid input date")
+    else: 
+        try:
+            date = str.split('.')
+        except ValueError:
+            date = str.split('-')
+        
+        print(date)
+        isValid = True
+        year = int(date[2])
+        month = int(date[1])
+        day = int(date[0])
+
+        try:
+            datetime.datetime(year, month, day)
+        
+        except ValueError:
+            isValid = False
+            #raise ValueError("Incorrect data format")
+
+        if(isValid and year >= 2000):
+            print("Valid input date" )
+        elif(year < 2000):
+            print("Year should be greater than 2000")
+        else:
+            print("Invalid input date")
         
 
-validate(19, 1, 1995)
-validate(19, 15, 2022)
+find_function("Park from South Korea")
+find_function("19.1.1995")
+find_function("19.15.2022")
 
