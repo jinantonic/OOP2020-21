@@ -61,43 +61,44 @@ else:
 
 
 # Inheritance
-class Person:
+class Animal:
     def __init__(self):
-        self.name = 'Jina'
-        self.age = 26
+        self.type = 'Cat'
+        self.name = 'Ovid'
+        self.age = 7
 
-    def get_age(self):
-        print(self.name, "is", self.age, "years old.")
+    def get_info(self):
+        print(self.type + ' ' + self.name, "is", self.age, "years old.")
 
-p = Person()
-p.get_age()
+p = Animal()
+p.get_info()
 
-class Studnet(Person):
+class Pet(Animal):
     pass
 
-s = Studnet()
-s.get_age()
+s = Pet()
+s.get_info()
 
 # Composition
-class Salary:
-    def __init__(self, pay, bonus):
+class VetFee:
+    def __init__(self, pay, extra):
         self.pay = pay
-        self.bonus = bonus
+        self.extra = extra
 
-    def annual_salary(self):
-        return (self.pay * 12) + self.bonus
+    def annual_fee(self):
+        return (self.pay * 12) + self.extra
 
-class Employee:
-    def __init__(self, name, age, pay, bonus):
-        self.name = name
-        self.age = age
-        self.salary_object = Salary(pay, bonus)
+class Owner:
+    def __init__(self, petName, petAge, pay, extra):
+        self.petName = petName
+        self.age = petAge
+        self.VetFee_object = VetFee(pay, extra)
 
-    def total_salary(self):
-        return self.salary_object.annual_salary()
+    def total_fee(self):
+        return self.VetFee_object.annual_fee()
 
-e = Employee("Jina", 26, 5000, 100000)
-print(e.total_salary())
+e = Owner("Ovid", 7, 5000, 100000)
+print(e.total_fee())
 
 # Decorator
 def say(func):
@@ -156,3 +157,36 @@ import exam
 
 c = exam.Concrete_Coffee()
 print(c.get_cost())
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+    
+    def print_my_name(self):
+        print("My name is ", self.name)
+
+student_1 = Student("Bianca")
+student_1.print_my_name()
+
+
+
+class Animal:
+    def __init__(self):
+        self.type = 'Cat'
+        self.name = 'Ovid'
+
+    def get_info(self):
+        print("This is a " + self.type + " named " + self.name)
+
+a = Animal()
+a.get_info()
+
+class Owner(Animal):
+    def __init__(self):
+        self.age = 7
+    
+    def get_age(self):
+        print(a.type + ' ' + a.name + " is", self.age, "years old.")
+
+o = Owner()
+o.get_age()
