@@ -131,13 +131,28 @@ class Concrete_Coffee(Coffee):
     def get_cost(self):
         return 3.5
 
-class coffee_with_milk(Coffee):
+class decorator_coffee(Coffee):
+    def __init__(self, dec_coffee):
+        self.dec_coffee = dec_coffee
+    
     def get_cost(self):
-        return 4
+        return self.dec_coffee.get_cost()
+    
+class coffee_with_milk(decorator_coffee):
+    def __init__(self, dec_coffee):
+        decorator_coffee.__init__(self, dec_coffee)
 
-class coffee_with_almond_milk(Coffee):
     def get_cost(self):
-        return 4.5
+        return self.dec_coffee.get_cost() + 0.5
 
-c = Concrete_Coffee()
-c.get_cost()
+class coffee_with_almond_milk(decorator_coffee):
+    def __init__(self, dec_coffee):
+        decorator_coffee.__init__(self, dec_coffee)
+    
+    def get_cost(self):
+        return self.dec_coffee.get_cost() + 1.0
+
+import exam
+
+c = exam.Concrete_Coffee()
+print(c.get_cost())
